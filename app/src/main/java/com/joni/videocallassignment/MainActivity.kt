@@ -46,6 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -74,7 +76,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppNavigation()
+                    TempNavigation()
                 }
             }
         }
@@ -594,10 +596,96 @@ fun ZegoCallButton(
                 setAllCaps(false)
 
                 // Set styling
-                setTextColor(android.graphics.Color.WHITE)
-                setBackgroundResource(R.drawable.ic_launcher_background)
+               // setTextColor(android.graphics.Color.WHITE)
+               // setBackgroundResource(R.drawable.ic_launcher_background)
             }
         },
         modifier = Modifier.fillMaxSize()
     )
 }
+
+
+@Composable
+fun RoleSelectionScreen(navController: NavController) {
+    val callInvitationConfig = ZegoUIKitPrebuiltCallInvitationConfig()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Select Role",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.padding(bottom = 48.dp)
+        )
+        Button(
+            onClick = { navController.navigate(Screen.PatientLogin.route)
+                ZegoUIKitPrebuiltCallService.init(getApplication(), 1478493845, "4ff5149f771aac5a7faa71a85710d07978abd366021dff0a9a7e11b8478f7297f", "patient", "patient",callInvitationConfig);
+                      },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
+        ) {
+            Text("Patient")
+        }
+        Button(
+            onClick = { navController.navigate(Screen.DoctorLogin.route)
+                ZegoUIKitPrebuiltCallService.init(getApplication(), 1478493845, "4ff5149f771aac5a7faa71a85710d07978abd366021dff0a9a7e11b8478f7297f", "doctor", "doctor",callInvitationConfig);
+                      },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Doctor")
+        }
+    }
+}
+
+sealed class Screen(val route: String) {
+    object RoleSelection : Screen("role_selection")
+    object PatientLogin : Screen("patient_login")
+    object DoctorLogin : Screen("doctor_login")
+}
+
+
+@Composable
+fun TempNavigation() {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Screen.RoleSelection.route
+    ) {
+        composable(Screen.RoleSelection.route) {
+            RoleSelectionScreen(navController)
+        }
+        composable(Screen.PatientLogin.route) {
+            PatientLoginScreen(navController)
+        }
+        composable(Screen.DoctorLogin.route) {
+            DoctorLoginScreen(navController)
+        }
+    }
+}
+
+@Composable
+fun DoctorLoginScreen(x0: NavHostController) {
+    Box(contentAlignment = Alignment.Center){
+        Text("Hello Doctor")
+    }
+}
+
+@Composable
+fun PatientLoginScreen(x0: NavHostController) {
+    Box(
+        contentAlignment = Alignment.Center
+    ) {
+        ZegoCallButton(
+            targetUserId = "doctor",
+            targetUserName = "doctor",
+            isVideoCall = true
+        )
+    }
+}
+
+
+
