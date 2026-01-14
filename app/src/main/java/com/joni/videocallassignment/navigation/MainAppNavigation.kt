@@ -1,21 +1,16 @@
-/*
-package com.joni.videocallassignment.navigation
-
-import android.app.Application
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.appointmentbooking.service.ZegoCallManager
-import com.joni.videocallassignment.models.UserType
-import com.joni.videocallassignment.screens.DoctorDashboard
-import com.joni.videocallassignment.screens.LoginScreen
-import com.joni.videocallassignment.screens.PatientDashboard
-import com.joni.videocallassignment.viewModels.AppointmentViewModel
-import com.joni.videocallassignment.viewModels.AuthViewModel
+import com.joni.videocallassignment.LoginScreen
+import com.joni.videocallassignment.models.UserRole
+import com.joni.videocallassignment.screens.DoctorHomeScreen
+import com.joni.videocallassignment.screens.PatientHomeScreen
+import com.joni.videocallassignment.screens.SignUpScreen
+
+/*
+
 
 
 @Composable
@@ -100,3 +95,65 @@ fun MainAppNavigation(){
 }
 
 */
+
+
+
+sealed class Screen(val route: String) {
+    object Login : Screen("login")
+    object Signup : Screen("signup")
+    object PatientHome : Screen("patient_home")
+    object DoctorHome : Screen("doctor_home")
+}
+
+
+
+@Composable
+fun AppNavGraph() {
+    val navController = rememberNavController()
+    val authViewModel: AuthViewModel = viewModel()
+
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Login.route
+    ) {
+
+        composable(Screen.Login.route) {
+            com.joni.videocallassignment.screens.LoginScreen(
+                viewModel = authViewModel,
+                onLoginSuccess = { role ->
+                    when (role) {
+                        UserRole.PATIENT ->
+                            navController.navigate(Screen.PatientHome.route) {
+                                popUpTo(Screen.Login.route) { inclusive = true }
+                            }
+
+                        UserRole.DOCTOR ->
+                            navController.navigate(Screen.DoctorHome.route) {
+                                popUpTo(Screen.Login.route) { inclusive = true }
+                            }
+                    }
+                },
+                onSignupClick = {
+                    navController.navigate(Screen.Signup.route)
+                }
+            )
+        }
+
+        composable(Screen.Signup.route) {
+            SignUpScreen(
+                viewModel = authViewModel,
+                onSignupSuccess = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(Screen.PatientHome.route) {
+            PatientHomeScreen()
+        }
+
+        composable(Screen.DoctorHome.route) {
+            DoctorHomeScreen()
+        }
+    }
+}

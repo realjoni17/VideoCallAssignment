@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-  //  id("com.google.devtools.ksp")
+    alias(libs.plugins.google.gms.google.services)
+    //  id("com.google.devtools.ksp")
 }
 
 android {
@@ -76,4 +77,14 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
     implementation("androidx.appcompat:appcompat:1.6.1")
+
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+
+
+    implementation("com.google.firebase:firebase-auth")
+
+    implementation("com.google.firebase:firebase-firestore")
+
+// Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
 }

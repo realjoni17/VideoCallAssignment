@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "620619356061",
+    "project_id": "anbc34323",
+    "storage_bucket": "anbc34323.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620619356061:android:31b282e12497b601b68174",
+        "android_client_info": {
+          "package_name": "com.joni.videocallassignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHJcOBLXK5rV63oZRInVhRfhsynitfiIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

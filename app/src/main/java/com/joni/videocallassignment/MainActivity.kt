@@ -1,5 +1,6 @@
 package com.joni.videocallassignment
 
+import AppNavGraph
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -76,7 +77,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TempNavigation()
+                    AppNavGraph()
                 }
             }
         }
@@ -577,7 +578,8 @@ fun AppointmentCard(
 fun ZegoCallButton(
     targetUserId: String,
     targetUserName: String,
-    isVideoCall: Boolean = true
+    isVideoCall: Boolean = true,
+    callType : String = "Call Now"
 ) {
     AndroidView(
         factory = { context ->
@@ -592,15 +594,15 @@ fun ZegoCallButton(
                 setTimeout(60)
 
                 // Customize appearance
-                text = "Call Now"
+                text = callType
                 setAllCaps(false)
 
                 // Set styling
-               // setTextColor(android.graphics.Color.WHITE)
-               // setBackgroundResource(R.drawable.ic_launcher_background)
+                 setTextColor(android.graphics.Color.BLUE)
+                // setBackgroundResource(R.drawable.ic_launcher_background)
             }
         },
-        modifier = Modifier.fillMaxSize()
+
     )
 }
 

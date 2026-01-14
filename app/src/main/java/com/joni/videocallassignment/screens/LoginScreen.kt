@@ -1,118 +1,53 @@
 
 package com.joni.videocallassignment.screens
 
-
-/*import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import AuthViewModel
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.joni.videocallassignment.models.UserType
-import com.joni.videocallassignment.viewModels.AuthViewModel
-
+import com.joni.videocallassignment.models.UserRole
 
 @Composable
 fun LoginScreen(
     viewModel: AuthViewModel,
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: (UserRole) -> Unit,
+    onSignupClick: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var selectedUserType by remember { mutableStateOf(UserType.PATIENT) }
-    val loginError by viewModel.loginError.collectAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(32.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "Appointment Booking",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 32.dp)
-        )
+    Column(Modifier.padding(24.dp)) {
+        Text("Login", style = MaterialTheme.typography.headlineMedium)
 
-        // User Type Selection
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            FilterChip(
-                selected = selectedUserType == UserType.PATIENT,
-                onClick = { selectedUserType = UserType.PATIENT },
-                label = { Text("Patient") }
-            )
-            FilterChip(
-                selected = selectedUserType == UserType.DOCTOR,
-                onClick = { selectedUserType = UserType.DOCTOR },
-                label = { Text("Doctor") }
-            )
-        }
+        OutlinedTextField(email, { email = it }, label = { Text("Email") })
+        OutlinedTextField(password, { password = it }, label = { Text("Password") })
 
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Email Field
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Password Field
-        OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-        )
-
-        if (loginError != null) {
-            Text(
-                text = loginError!!,
-                color = MaterialTheme.colorScheme.error,
-                modifier = Modifier.padding(top = 8.dp)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Login Button
         Button(
+            modifier = Modifier.fillMaxWidth(),
             onClick = {
-                viewModel.login(email, password, selectedUserType)
-            },
-            modifier = Modifier.fillMaxWidth()
+                viewModel.login(email, password, onLoginSuccess)
+            }
         ) {
             Text("Login")
         }
 
-        // Demo credentials
-        Spacer(modifier = Modifier.height(32.dp))
-        Text("Demo Credentials:", style = MaterialTheme.typography.labelSmall)
-        Text("Patient: patient@email.com / 123456", style = MaterialTheme.typography.labelSmall)
-        Text("Doctor: doctor@email.com / 123456", style = MaterialTheme.typography.labelSmall)
-    }
-
-    // Observe login success
-    LaunchedEffect(Unit) {
-        viewModel.currentUser.collect { user ->
-            if (user != null) {
-                onLoginSuccess()
-            }
+        TextButton(onClick = onSignupClick) {
+            Text("Create an account")
         }
+
+
     }
-}*/
+}
