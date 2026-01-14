@@ -1,8 +1,8 @@
-/*
+
 package com.joni.videocallassignment.screens
 
 
-import androidx.compose.foundation.layout.*
+/*import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -11,8 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.example.appointmentbooking.data.UserType
-import com.example.appointmentbooking.viewmodel.AuthViewModel
+import com.joni.videocallassignment.models.UserType
+import com.joni.videocallassignment.viewModels.AuthViewModel
+
 
 @Composable
 fun LoginScreen(

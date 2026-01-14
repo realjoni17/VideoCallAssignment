@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+  //  id("com.google.devtools.ksp")
 }
 
 android {
@@ -59,5 +60,20 @@ dependencies {
 
     implementation("com.github.ZEGOCLOUD:zego_uikit_prebuilt_call_android:+")
 
+    implementation("androidx.compose.ui:ui-viewbinding:1.5.4")
 
+    val room_version = "2.8.4"
+
+   // implementation("androidx.room:room-runtime:$room_version")
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+   // ksp("androidx.room:room-compiler:$room_version")
+
+
+    val nav_version = "2.9.6"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
 }
