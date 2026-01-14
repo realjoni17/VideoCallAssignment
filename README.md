@@ -85,15 +85,15 @@ Audio / Video Call Starts
 [![Demo Video]](./Assets/mt.mp4)
 
 ## 📚 ScreenShots
-|             Screen              |           Screen            |            Screen           |
+|             Screen                    |           Screen                 |            Screen           |
 |:-------------------------------------:|:--------------------------------:|:---------------------------------:|
-| <img src = "/Assets/first.jpeg"> | <img src = "/Assets/second.jpeg"> | <img src = "/Assets/third.jpeg"> |
+| <img src = "/Assets/first.jpeg">      | <img src = "/Assets/second.jpeg">| <img src = "/Assets/third.jpeg"> |
 
-|        Screen         |            Screen           |            Screen           |             
+|        Screen                     |            Screen                  |            Screen           |             
 |:---------------------------------:|:----------------------------------:|:------------------------------------:|
-| <img src = "/Assets/fourth.jpeg"> | <img src = "/Assets/fifth.jpeg"> | <img src = "/Assets/sixth.jpeg"> |
+| <img src = "/Assets/fourth.jpeg"> | <img src = "/Assets/fifth.jpeg">   | <img src = "/Assets/sixth.jpeg"> |
 
-|          Screen            |            Screen           |                  |
+|          Screen                      |            Screen                 |                  |
 |:------------------------------------:|:---------------------------------:|:--------------------------------------:|
-| <img src = "/Assets/seventh.jpeg"> | <img src = "/Assets/eigth.jpeg"> | 
+| <img src = "/Assets/seventh.jpeg">   | <img src = "/Assets/eigth.jpeg">  | 
 
